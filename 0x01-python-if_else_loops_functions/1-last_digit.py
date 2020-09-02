@@ -4,7 +4,7 @@ number = random.randint(-10000, 10000)
 last = number % 10
 negative = number % -10
 
-if number > 0:
+if number >= 0:
     if last == 0:
         print("Last digit of {} is {} and is 0".format(number, last))
     if last > 0:
