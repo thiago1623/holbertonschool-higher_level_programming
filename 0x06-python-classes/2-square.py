@@ -10,12 +10,12 @@ class Square():
     def __init__(self, size=0):
         """instance attribute"""
         try:
-            if size is not isinstance(size, int):
-                raise TypeError()
-            if size < 0:
-                raise ValueError()
             if isinstance(size, int) and size >= 0:
                 self.__size = size
+            elif not isinstance(size, int):
+                raise TypeError()
+            elif size < 0:
+                raise ValueError()
         except TypeError:
             print("size must be an integer")
         except ValueError:
