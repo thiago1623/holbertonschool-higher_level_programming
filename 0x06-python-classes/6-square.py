@@ -42,11 +42,12 @@ class Square():
         try:
             if type(value) != tuple or len(value) != 2:
                 raise TypeError()
-            if not all(isinstance(value, int) for i in value):
+            elif not all(isinstance(value, int) for i in value):
                 raise TypeError()
-            if not all(i >= 0 for i in value):
+            elif not all(i >= 0 for i in value):
                 raise TypeError()
-            self.__position = value
+            else:
+                self.__position = value
         except TypeError:
             print("position must be a tuple of 2 positive integers")
 
