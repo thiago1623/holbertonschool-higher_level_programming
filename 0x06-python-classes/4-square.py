@@ -13,12 +13,14 @@ class Square():
 
     @property
     def size(self):
+        """ method to retrieve it """
         return self.__size
 
     @size.setter
     def size(self, value):
+        """ method to set it """
         try:
-            if isinstance(value, int):
+            if isinstance(value, int) and value >= 0:
                 self.__size = value
             elif not isinstance(value, int):
                 raise TypeError()
