@@ -40,9 +40,11 @@ class Square():
     def position(self, value):
         """method to set it"""
         try:
-            if type(value) != tuple or len(value) != 2 or \
-               not all([type(i) == int for i in value]) or \
-               not all([i >= 0 for i in value]):
+            if type(value) != tuple or len(value) != 2:
+                raise TypeError()
+            elif not all(isinstance(value, int) for i in value):
+                raise TypeError()
+            elif not all(i >= 0 for i in value):
                 raise TypeError()
             self.__position = value
         except TypeError:
