@@ -12,10 +12,12 @@ class Square:
 
     @property
     def size(self):
+        """method to retrieve it"""
         return self.__size
 
     @size.setter
     def size(self, size):
+        """method to set it"""
         if type(size) != int:
             raise TypeError("size must be an integer")
         if size < 0:
@@ -24,22 +26,27 @@ class Square:
 
     @property
     def position(self):
+        """method to retrieve it"""
         return self.__position
 
     @position.setter
     def position(self, value):
+        """method to set it"""
         if type(value) != tuple or len(value) != 2 or \
            not all([type(i) == int for i in value]):
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
     def __repr__(self):
+        """return the object representation"""
         return (self.get_str())
 
     def area(self):
+        """return the square area"""
         return self.__size * self.__size
 
     def get_str(self):
+        """method to set it"""
         total = ""
         if self.__size == 0:
             total += "\n"
@@ -54,4 +61,5 @@ class Square:
         return total
 
     def my_print(self):
+        """method to set it"""
         print(self.get_str())
