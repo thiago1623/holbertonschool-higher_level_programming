@@ -4,58 +4,40 @@ class Square that defines a square by: (based on 5-square.py)
 """
 
 
-class Square():
+class Square:
     """constructor"""
-
     def __init__(self, size=0, position=(0, 0)):
-        """instance attribute"""
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
-        """method to retrieve it """
         return self.__size
 
     @size.setter
-    def size(self, value):
-        """method to set it"""
-        try:
-            if not isinstance(value, int):
-                raise TypeError()
-            if value < 0:
-                raise ValueError()
-            self.__size = value
-        except TypeError:
-            print("size must be an integer")
-        except ValueError:
-            print("size must be >= 0")
+    def size(self, size):
+        if type(size) != int:
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = size
 
     @property
     def position(self):
-        """method to retrieve it"""
         return self.__position
 
     @position.setter
     def position(self, value):
-        """method to set it"""
-        try:
-            if type(value) != tuple or len(value) != 2:
-                raise TypeError()
-            elif not all(isinstance(value, int) for i in value):
-                raise TypeError()
-            elif not all(i >= 0 for i in value):
-                raise TypeError()
-            self.__position = value
-        except TypeError:
-            print("position must be a tuple of 2 positive integers")
+        if type(value) != tuple or len(value) != 2 or \
+           not all([type(i) == int for i in value]) or \
+           not all([i >= 0 for i in value]):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = value
 
     def area(self):
-        """instance method that return square area"""
-        return self.__size ** 2
+        return self.__size * self.__size
 
     def my_print(self):
-        """method that prints in stdout the square with the character #:"""
         if self.__size == 0:
             print("")
             return
