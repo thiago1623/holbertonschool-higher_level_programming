@@ -46,8 +46,7 @@ class Square():
                 raise TypeError()
             elif not all(i >= 0 for i in value):
                 raise TypeError()
-            else:
-                self.__position = value
+            self.__position = value
         except TypeError:
             print("position must be a tuple of 2 positive integers")
 
