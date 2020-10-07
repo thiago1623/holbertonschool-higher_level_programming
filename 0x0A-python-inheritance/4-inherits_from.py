@@ -10,3 +10,4 @@ def inherits_from(obj, a_class):
     """return the successful object"""
     if type(obj) != a_class:
         return(True if isinstance(obj, a_class) else False)
+    return False
