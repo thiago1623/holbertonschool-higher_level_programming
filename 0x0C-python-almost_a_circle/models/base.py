@@ -61,3 +61,37 @@ class Base():
         with open(cls.__name__ + ".json", "r") as file:
             stuff = cls.from_json_string(file.read())
         return [cls.create(**index) for index in stuff]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ Save information into a csv file """
+        file_name = cls.__name__ + ".csv"
+        with open(file_name, 'w', newline='') as file:
+            if list_objs is None or list_objs == []:
+                file.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    headers = ["id", "width", "height", "x", "y"]
+                else:
+                    headers = ["id", "size", "x", "y"]
+                new_csv = csv.DictWriter(file, fieldnames=headers)
+                for object in list_objs:
+                    new_csv.writerow(object.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ Load csv data """
+        file_name = cls.__name__ + ".csv"
+        try:
+            with open(file_name, 'r', newline='') as file:
+                if cls.__name__ == "Rectangle":
+                    headers = ["id", "width", "height", "x", "y"]
+                else:
+                    headers = ["id", "size", "x", "y"]
+                dict_list = csv.DictReader(file, fieldnames=headers)
+                dict_list = [dict([key, int(value)] for key,
+                                  value in f.items())
+                             for f in dict_list]
+                return [cls.create(**argument) for argument in dict_list]
+        except IOError:
+            return []
